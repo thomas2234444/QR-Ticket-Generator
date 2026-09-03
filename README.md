@@ -1,25 +1,37 @@
-🎟️ QR Ticket Generator
+# 🎟️ QR Ticket Generator
 
-A Python-based personalized ticket generator that reads guest information from an Excel file, generates a unique WhatsApp confirmation QR code for each guest, adds the guest's name to a predefined ticket template, and exports the finished tickets as PNG images.
+A Python-based **personalized ticket generator** that reads guest information from an Excel file, generates a unique WhatsApp confirmation QR code for each guest, adds the guest's name to a predefined ticket template, and exports the finished tickets as PNG images.
 
-✨ Features
-📊 Reads guest names automatically from an Excel file.
-🎟️ Generates a personalized ticket for every guest.
-👤 Adds the guest's name directly to the ticket design.
-📱 Generates a unique QR code for each guest.
-💬 QR code opens WhatsApp with a pre-filled attendance confirmation message.
-🖼️ Uses a custom ticket template/image.
-📁 Automatically creates an output folder for generated tickets.
-🔤 Supports custom fonts for ticket names.
-⚡ Generates tickets for all guests automatically with a single command.
-🛠️ Technologies Used
-Python 3
-Pandas – Reading guest information from Excel
-QRCode – Generating QR codes
-Pillow (PIL) – Editing ticket images and adding text
-OpenPyXL – Excel file support through Pandas
-urllib.parse – Encoding WhatsApp messages
-📂 Project Structure
+---
+
+## ✨ Features
+
+* 📊 Reads guest names automatically from an Excel file.
+* 🎟️ Generates a personalized ticket for every guest.
+* 👤 Adds the guest's name directly to the ticket design.
+* 📱 Generates a unique QR code for each guest.
+* 💬 QR code opens WhatsApp with a pre-filled attendance confirmation message.
+* 🖼️ Uses a custom ticket template/image.
+* 📁 Automatically creates an output folder for generated tickets.
+* 🔤 Supports custom fonts for ticket names.
+* ⚡ Generates tickets for all guests automatically with a single command.
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python 3**
+* **Pandas** – Reading guest information from Excel
+* **QRCode** – Generating QR codes
+* **Pillow (PIL)** – Editing ticket images and adding text
+* **OpenPyXL** – Excel file support through Pandas
+* **urllib.parse** – Encoding WhatsApp messages
+
+---
+
+## 📂 Project Structure
+
+```text
 QR-Ticket-Generator/
 │
 ├── main.py
@@ -34,227 +46,347 @@ QR-Ticket-Generator/
 │
 ├── requirements.txt
 └── README.md
-File Description
-File / Folder	Description
-main.py	Main Python script
-guests.xlsx	Excel file containing guest names
-Dump Ticket.png	Ticket design/template
-ArefRuqaa-Regular.ttf	Custom font used for guest names
-tickets/	Generated personalized tickets
-requirements.txt	Required Python packages
-README.md	Project documentation
-📊 Excel File Format
+```
+
+### File Description
+
+| File / Folder           | Description                       |
+| ----------------------- | --------------------------------- |
+| `main.py`               | Main Python script                |
+| `guests.xlsx`           | Excel file containing guest names |
+| `Dump Ticket.png`       | Ticket design/template            |
+| `ArefRuqaa-Regular.ttf` | Custom font used for guest names  |
+| `tickets/`              | Generated personalized tickets    |
+| `requirements.txt`      | Required Python packages          |
+| `README.md`             | Project documentation             |
+
+---
+
+## 📊 Excel File Format
 
 The script expects an Excel file named:
 
+```text
 guests.xlsx
+```
 
 The Excel file must contain a column named:
 
+```text
 Name
-Example
-Name
-Ahmed Mohamed
-John Smith
-Maria George
-Thomas Amir
+```
+
+### Example
+
+| Name          |
+| ------------- |
+| Ahmed Mohamed |
+| John Smith    |
+| Maria George  |
+| Thomas Amir   |
 
 The script will automatically generate one ticket for every row.
 
-⚙️ Installation
-1. Clone the repository
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/YOUR_USERNAME/QR-Ticket-Generator.git
+```
 
 Navigate into the project:
 
+```bash
 cd QR-Ticket-Generator
-2. Create a virtual environment
+```
+
+---
+
+### 2. Create a virtual environment
+
+```bash
 python -m venv venv
+```
 
 Activate it on Windows:
 
+```bash
 venv\Scripts\activate
+```
 
 On macOS/Linux:
 
+```bash
 source venv/bin/activate
-3. Install dependencies
+```
+
+---
+
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-If you don't have a requirements.txt file yet, you can install the packages manually:
+If you don't have a `requirements.txt` file yet, you can install the packages manually:
 
+```bash
 pip install pandas qrcode[pil] openpyxl pillow
-🚀 Usage
+```
+
+---
+
+## 🚀 Usage
 
 Make sure the following files are inside the project folder:
 
+```text
 main.py
 guests.xlsx
 Dump Ticket.png
 ArefRuqaa-Regular.ttf
+```
 
 Then run:
 
+```bash
 python main.py
+```
 
 The program will:
 
-Read the guest names from guests.xlsx.
-Load the ticket template.
-Generate a WhatsApp confirmation message for each guest.
-Create a QR code containing the WhatsApp link.
-Add the guest's name to the ticket.
-Add the QR code to the ticket.
-Save the finished ticket inside the tickets folder.
-📱 How the QR Code Works
+1. Read the guest names from `guests.xlsx`.
+2. Load the ticket template.
+3. Generate a WhatsApp confirmation message for each guest.
+4. Create a QR code containing the WhatsApp link.
+5. Add the guest's name to the ticket.
+6. Add the QR code to the ticket.
+7. Save the finished ticket inside the `tickets` folder.
+
+---
+
+## 📱 How the QR Code Works
 
 For every guest, the program creates a personalized WhatsApp message.
 
 For example, if the guest's name is:
 
+```text
 Ahmed Mohamed
+```
 
 The generated message will be:
 
+```text
 أنا Ahmed Mohamed و بأكد حضوري
+```
 
 The message is URL-encoded and converted into a WhatsApp link:
 
+```text
 https://wa.me/PHONE_NUMBER?text=...
+```
 
 The link is then converted into a QR code.
 
 When the guest scans the QR code, WhatsApp opens with the confirmation message already written.
 
-🎨 Customization
-Change the WhatsApp Number
+---
 
-Inside main.py, change:
+## 🎨 Customization
 
+### Change the WhatsApp Number
+
+Inside `main.py`, change:
+
+```python
 phone_number = "+201000000000"
+```
 
 to the destination WhatsApp number.
 
-Use the international format without spaces.
+> Use the international format without spaces.
 
 For example:
 
+```python
 phone_number = "+201234567890"
-Change the Font
+```
+
+---
+
+### Change the Font
 
 The project currently uses:
 
+```python
 font_path = "ArefRuqaa-Regular.ttf"
+```
 
-You can replace it with another .ttf font:
+You can replace it with another `.ttf` font:
 
+```python
 font_path = "YourFont.ttf"
+```
 
 Make sure the font file exists in the project directory.
 
-Change Font Size
+---
+
+### Change Font Size
 
 Guest name:
 
+```python
 font = ImageFont.truetype(font_path, 55)
+```
 
 Details:
 
+```python
 small_font = ImageFont.truetype(font_path, 35)
+```
 
 Increase or decrease these values depending on your ticket design.
 
-Change Guest Name Position
+---
+
+### Change Guest Name Position
 
 The guest name is currently placed at:
 
+```python
 draw.text(
     (300, 350),
     name,
     fill="#E0DCD8",
     font=font
 )
+```
 
 The coordinates:
 
+```text
 (300, 350)
  ↑     ↑
  X     Y
+```
 
 You can change them to position the name anywhere on the ticket.
 
-Change QR Code Size
+---
+
+### Change QR Code Size
 
 The QR code is resized to:
 
+```python
 qr = qr.resize((120, 120))
+```
 
 For example:
 
+```python
 qr = qr.resize((150, 150))
-Change QR Code Position
+```
+
+---
+
+### Change QR Code Position
 
 The QR code is currently placed at:
 
+```python
 ticket.paste(qr, (185, 880))
+```
 
 Change the coordinates to move it:
 
+```python
 ticket.paste(qr, (200, 850))
-📤 Output
+```
+
+---
+
+## 📤 Output
 
 After running the program, the generated tickets will be stored automatically in:
 
+```text
 tickets/
+```
 
 Example:
 
+```text
 tickets/
 ├── Ahmed Mohamed.png
 ├── John Smith.png
 ├── Maria George.png
 └── Thomas Amir.png
+```
 
 Each ticket contains:
 
-👤 Guest name
-🎟️ Ticket design
-📱 WhatsApp confirmation QR code
-🔒 Security & Privacy
+* 👤 Guest name
+* 🎟️ Ticket design
+* 📱 WhatsApp confirmation QR code
+
+---
+
+## 🔒 Security & Privacy
 
 The project uses guest names from the Excel file to generate personalized tickets.
 
-Important
+### Important
 
-Do not upload real guest information to a public GitHub repository.
+Do **not** upload real guest information to a public GitHub repository.
 
-Add the following to .gitignore:
+Add the following to `.gitignore`:
 
+```gitignore
 guests.xlsx
 tickets/
 venv/
 __pycache__/
 *.pyc
+```
 
 This prevents private guest data and generated tickets from being committed accidentally.
 
-📄 Recommended requirements.txt
+---
+
+## 📄 Recommended `requirements.txt`
 
 Create a file named:
 
+```text
 requirements.txt
+```
 
 and add:
 
+```text
 pandas
 qrcode[pil]
 openpyxl
 Pillow
+```
 
 Then anyone can install the project's dependencies using:
 
+```bash
 pip install -r requirements.txt
-🧠 How It Works
+```
+
+---
+
+## 🧠 How It Works
+
+```text
               guests.xlsx
                    │
                    ▼
@@ -283,61 +415,73 @@ pip install -r requirements.txt
                    │
                    ▼
               tickets/
-💡 Possible Future Improvements
+```
+
+---
+
+## 💡 Possible Future Improvements
 
 Some useful improvements that could be added:
 
-Export tickets as PDF.
+* [ ] Export tickets as PDF.
+* [ ] Generate unique ticket IDs.
+* [ ] Add guest email/phone fields.
+* [ ] Add QR codes containing ticket IDs.
+* [ ] Validate Excel data before processing.
+* [ ] Handle duplicate guest names.
+* [ ] Automatically center long guest names.
+* [ ] Automatically resize text based on name length.
+* [ ] Add multiple Excel columns to the ticket.
+* [ ] Create a graphical user interface (GUI).
+* [ ] Add a progress bar.
+* [ ] Generate a ZIP file containing all tickets.
+* [ ] Add database support.
+* [ ] Add ticket verification through an API.
 
-Generate unique ticket IDs.
+---
 
-Add guest email/phone fields.
-
-Add QR codes containing ticket IDs.
-
-Validate Excel data before processing.
-
-Handle duplicate guest names.
-
-Automatically center long guest names.
-
-Automatically resize text based on name length.
-
-Add multiple Excel columns to the ticket.
-
-Create a graphical user interface (GUI).
-
-Add a progress bar.
-
-Generate a ZIP file containing all tickets.
-
-Add database support.
-
-Add ticket verification through an API.
-
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome!
 
-Fork the repository.
-Create a new branch:
+1. Fork the repository.
+2. Create a new branch:
+
+```bash
 git checkout -b feature/new-feature
-Make your changes.
-Commit your changes:
+```
+
+3. Make your changes.
+4. Commit your changes:
+
+```bash
 git commit -m "Add new feature"
-Push the branch:
+```
+
+5. Push the branch:
+
+```bash
 git push origin feature/new-feature
-Open a Pull Request.
-📜 License
+```
 
-This project is open-source and available under the MIT License.
+6. Open a Pull Request.
 
-👨‍💻 Author
+---
 
-Thomas Amir
+## 📜 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+**Thomas Amir**
 
 If you found this project useful, consider giving the repository a ⭐ on GitHub.
 
-⭐ Project Summary
+---
 
-A simple automated ticket-generation system built with Python that transforms an Excel guest list into personalized event tickets with WhatsApp confirmation QR codes.
+### ⭐ Project Summary
+
+> A simple automated ticket-generation system built with Python that transforms an Excel guest list into personalized event tickets with WhatsApp confirmation QR codes.
